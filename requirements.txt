@@ -1,0 +1,30 @@
+# Core
+inspect_ai
+huggingface_hub
+sentence-transformers
+torch>=2.0
+numpy
+tqdm
+platformdirs
+
+# Proxy server
+flask
+requests
+aiohttp
+
+# OpenAI-compatible client + judges
+openai
+
+# RAG / A-Mem baselines
+faiss-cpu
+langchain-community
+langchain-core
+
+# GuardAgent baseline
+pyautogen
+autogen
+python-Levenshtein
+termcolor
+
+# Optional: training the SafetyProjector
+scikit-learn

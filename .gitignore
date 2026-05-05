@@ -1,0 +1,44 @@
+# Python build / cache artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+.pytest_cache/
+.cache/
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Run-time artifacts produced by proxy_server.py / inspect_ai
+logs/*
+!logs/.gitkeep
+*.log
+*.eval
+resp_log.txt
+chroma_db/
+
+# Local archives that should not be open-sourced
+_deprecated/
+
+# Local datasets / pre-built artifacts that are too large to commit
+# (rebuild via the steps in README.md, or distribute through release assets / Git LFS)
+agent_align_data_v3.json
+agent_align_faiss_index.index
+src/attack_results.json
+src/*.pkl
+src/models/*.pth
+
+# Compiled / heavy artifacts (we ship the canonical pkl/pth explicitly via Git LFS or release assets)
+*.bin
+*.npy
+*.faiss
+*.index
+
+# OS junk
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+autogen
+numpy
+pyautogen
+python_Levenshtein
+termcolor
+together
