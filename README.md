@@ -425,16 +425,57 @@ You can stack memory + Llama-Guard if desired.
 
 ## License & citation
 
-MIT, with the additional clause inherited from AgentHarm: do not use the
-dataset / benchmark to do anything other than improve the safety and security
-of AI systems. See `LICENSE`.
+This project is released under the **MIT License**, with the additional clause
+inherited from AgentHarm: do not use the dataset / benchmark to do anything
+other than improve the safety and security of AI systems. See `LICENSE`.
 
 If you use this code, please cite the SafeHarbor paper (citation forthcoming)
-as well as the upstream benchmarks:
+as well as the upstream benchmarks and baselines we build upon:
+
+```bibtex
+@inproceedings{agentharm,
+  title={AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents},
+  author={Andriushchenko, Maksym and Souly, Alexandra and Dziemian, Mateusz and Duenas, Derek and Lin, Maxwell and Wang, Justin and Hendrycks, Dan and Zou, Andy and Kolter, J Zico and Fredrikson, Matt and others},
+  booktitle={The Thirteenth International Conference on Learning Representations},
+  year={2024}
+}
+
+@article{asb,
+  title={Agent-SafetyBench: Evaluating the Safety of LLM Agents},
+  author={Zhang, Zhexin and Cui, Shiyao and Lu, Yida and Zhou, Jingzhuo and Yang, Junxiao and Wang, Hongning and Huang, Minlie},
+  journal={arXiv preprint arXiv:2412.14470},
+  year={2024}
+}
+
+@misc{llamaguard3,
+  title={Llama Guard 3 8B},
+  author={Meta AI},
+  year={2024},
+  howpublished={\url{https://huggingface.co/meta-llama/Llama-Guard-3-8B}},
+  note={Accessed: 2026-01-12}
+}
+
+@article{guardagent,
+  title={GuardAgent: Safeguard LLM Agents by a Guard Agent via Knowledge-Enabled Reasoning},
+  author={Xiang, Zhen and Zheng, Linzhi and Li, Yanjie and Hong, Junyuan and Li, Qinbin and Xie, Han and Zhang, Jiawei and Xiong, Zidi and Xie, Chulin and Yang, Carl and others},
+  journal={arXiv preprint arXiv:2406.09187},
+  year={2024}
+}
+
+@article{amem,
+  title={A-Mem: Agentic Memory for LLM Agents},
+  author={Xu, Wujiang and Liang, Zujie and Mei, Kai and Gao, Hang and Tan, Juntao and Zhang, Yongfeng},
+  journal={arXiv preprint arXiv:2502.12110},
+  year={2025}
+}
+```
+
+**Corresponding code locations:**
 
 - AgentHarm (Andriushchenko et al., 2024) — `agentharm.py`, `agents/`,
   `benchmark/`, `prompts.py`, `scorer.py`, `metric.py`, `utils.py`.
-- AgentAlign — used as the safety-training corpus.
-- GuardAgent (Xiang et al., 2024) — `baselines/guardagent/`.
-- A-Mem — `A_mem/`.
 - Agent-SafetyBench (Zhang et al., 2024) — `Agent-SafetyBench/`.
+- Llama Guard 3 (Meta AI, 2024) — `src/llama_guard.py`.
+- GuardAgent (Xiang et al., 2024) — `baselines/guardagent/`.
+- A-Mem (Xu et al., 2025) — `A_mem/`.
+- AgentAlign — used as the safety-training corpus.
