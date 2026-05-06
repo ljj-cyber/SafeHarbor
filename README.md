@@ -13,13 +13,20 @@ artefacts on the AgentAlign safety dataset, and (b) **evaluate** the resulting
 guardrail on **AgentHarm** and **Agent-SafetyBench**, plus a small set of
 baselines (RAG, A-Mem, GuardAgent, Llama Guard) we compare against in the paper.
 
-> **Note about pre-built artefacts.** The pre-trained Risk Tree
-> (`src/final_memory_after_benign_calibration.pkl`, ~145 MB) and the Safety
-> Projector weights (`src/models/safety_projector.pth`, ~1 MB) are **not**
-> shipped through git (`.gitignore`d due to size). Either rebuild them with
-> the steps in [§3 Rebuilding the Risk Tree](#3-rebuilding-the-risk-tree)
-> below, or distribute them via Git LFS / GitHub release assets and place them
-> at those exact paths.
+> **Pre-built artefacts are now shipped with the repo.** As of this commit the
+> three core artefacts needed to reproduce SafeHarbor at evaluation time are
+> committed directly under `src/`:
+>
+> | Artefact | Path | Size |
+> | --- | --- | --- |
+> | Pre-built Risk Tree (pickled `RiskTree`) | `src/final_memory_after_benign_calibration.pkl` | ~19 MB |
+> | Human-readable rule dump (companion of the pkl) | `src/final_memory_after_benign_calibration_rules.json` | ~2.7 MB |
+> | Trained Safety Projector weights | `src/models/safety_projector.pth` | ~1 MB |
+>
+> The pkl is the one you should load at runtime; the `_rules.json` is a flat
+> JSON dump of every cluster's `defense_strategy` and `benign_boundary_rule`
+> for inspection / auditing. You can still rebuild everything from scratch by
+> following [§3 Rebuilding the Risk Tree](#3-rebuilding-the-risk-tree).
 
 ---
 
@@ -55,8 +62,9 @@ baselines (RAG, A-Mem, GuardAgent, Llama Guard) we compare against in the paper.
 │   ├── attacker.py             #   Build script: generate attack data via vLLM
 │   ├── memory_defender.py      #   Build script: evolve the Risk Tree from attacks
 │   ├── llama_guard.py          #   Llama Guard helper (also used as a baseline)
-│   ├── final_memory_after_benign_calibration.pkl   ★ pre-built Risk Tree (gitignored)
-│   └── models/safety_projector.pth                  ★ trained Safety Projector  (gitignored)
+│   ├── final_memory_after_benign_calibration.pkl        ★ pre-built Risk Tree (shipped, ~19 MB)
+│   ├── final_memory_after_benign_calibration_rules.json ★ companion rule dump (shipped, ~2.7 MB)
+│   └── models/safety_projector.pth                       ★ trained Safety Projector (shipped, ~1 MB)
 │
 ├── baselines/
 │   ├── README.md
@@ -112,8 +120,9 @@ The proxy will forward all requests to it.
 | AgentHarm dataset | downloaded automatically by `inspect_ai` from `ai-safety-institute/AgentHarm` | (cache) |
 | AgentAlign dataset | `agent_align_data_v3.json` (v3, not v2) — request from the AgentAlign authors or download from their HF repo | `./AgentAlign/agent_align_data_v3.json` |
 | Agent-SafetyBench dataset | already vendored under `Agent-SafetyBench/data/` | – |
-| Pre-built SafeHarbor memory | rebuild via §3 OR download from the project release page | `src/final_memory_after_benign_calibration.pkl` |
-| Pre-trained Safety Projector | rebuild via §3.1 OR download from the project release page | `src/models/safety_projector.pth` |
+| Pre-built SafeHarbor memory | **shipped** at `src/final_memory_after_benign_calibration.pkl` (rebuild via §3 if you want a fresh one) | `src/final_memory_after_benign_calibration.pkl` |
+| Companion rules dump | **shipped** at `src/final_memory_after_benign_calibration_rules.json` (auto-regenerated whenever the pkl is rebuilt) | `src/final_memory_after_benign_calibration_rules.json` |
+| Pre-trained Safety Projector | **shipped** at `src/models/safety_projector.pth` (rebuild via §3.1 if you want a fresh one) | `src/models/safety_projector.pth` |
 
 ---
 

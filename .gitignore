@@ -33,6 +33,11 @@ src/attack_results.json
 src/*.pkl
 src/models/*.pth
 
+# ...except for the canonical pre-built artefacts shipped with the repo.
+!src/final_memory_after_benign_calibration.pkl
+!src/final_memory_after_benign_calibration_rules.json
+!src/models/safety_projector.pth
+
 # Compiled / heavy artifacts (we ship the canonical pkl/pth explicitly via Git LFS or release assets)
 *.bin
 *.npy
